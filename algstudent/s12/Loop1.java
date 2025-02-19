@@ -3,7 +3,7 @@ package algstudent.s12;
 public class Loop1 {
 
 	/**
-	 * 	Complexity O(n^2) i think
+	 * 	Complexity O(nlogn)
 	 */
 	public static long loop1(long n) {
 		long cont = 0;
