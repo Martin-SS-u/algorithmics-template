@@ -20,11 +20,14 @@ public class Division1 {
 	public static void main (String arg []) 
 	{
 		long t1,t2,cont = 0;
+		int reps = Integer.parseInt(arg[0]);
 		for (int n=1;n<=10000000;n*=2)
 		 {
 			 t1 = System.currentTimeMillis ();
 			
-			 cont=rec1(n);
+			 for(int r=0 ; r<reps ; r++) {
+				 cont=rec1(n);
+			 }
 			 
 			 t2 = System.currentTimeMillis ();
 			

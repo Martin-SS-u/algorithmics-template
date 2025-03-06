@@ -15,7 +15,7 @@ public class Fibonacci2 {
 		long t1,t2;
 		int solution=0;
 		
-		for (int n=10; n<60; n++) {  //from n = 10 to n = 60   
+		for (int n=10; n<=60; n+=5) {  //from n = 10 to n = 60   
 			  if (option==1) { //fib1    
 				    t1= System.currentTimeMillis();
 				  
@@ -26,7 +26,7 @@ public class Fibonacci2 {
 					System.out.println ("ORDER = "+n+"**"+"TIME = "+(t2-t1)+"**"+" nTimes = "+ nTimes + " SOL = " + solution); 
 			  }    
 			  else if (option==2) { //fib2
-					int[]v = new int [60];  //for the second method 
+					int[]v = new int [61];  //for the second method 
 				    t1= System.currentTimeMillis();
 				  
 				    for (int repetitions=1; repetitions<=nTimes; repetitions++) 
