@@ -4,6 +4,7 @@ public class NullPathTimes {
 
 	public static void main(String[] args) {
 		NullPath np= new NullPath();
+//		np.newNullPath(5);
 		long t1,t2;
 		
 		System.out.println("N:\t\tTIME(ms)");

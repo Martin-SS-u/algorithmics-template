@@ -53,6 +53,7 @@ public class NullPath {
 		pathWeight = 0;
 		usedNodes = new ArrayList<Integer>(size);
 		
+		
 		usedNodes.add(origin);
 		backtracking(origin, target);
 		
@@ -87,6 +88,9 @@ public class NullPath {
 					if(!isSolution(usedNodes)) {
 						pathWeight -= weights[current][child];
 						usedNodes.remove((Integer) child);
+					}else {
+						found = true;
+						return;
 					}
 				}else {
 					pathWeight += weights[current][target];
@@ -94,6 +98,9 @@ public class NullPath {
 					if(!isSolution(usedNodes)) {
 						pathWeight -= weights[current][target];
 						usedNodes.remove((Integer) target);
+					}else {
+						found = true;
+						return;
 					}
 				}
 			}
