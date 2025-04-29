@@ -96,6 +96,7 @@ public class NullPathBB {
 					if (cost < pruneLimit) {
 						pruneLimit = cost;
 						bestNode = child;
+						found = true;
 					}
 				}
 				else
