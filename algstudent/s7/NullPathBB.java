@@ -10,9 +10,9 @@ import algstudent.s7.utils.Node;
 public class NullPathBB {
 	static int size;
 	
-	static List<Integer> nodes;
+	public static List<Integer> nodes;
 	List<Integer> usedNodes;
-	static int[][] weights;
+	public static int[][] weights;
 	static double p1 = 0.5;
 	static double p2 = 1 - p1;
 	static int objectiveCost = 0;
@@ -64,7 +64,7 @@ public class NullPathBB {
 		
 		
 		
-		rootNode = new MyNode(origin);
+		rootNode = new Node(origin);
 		branchAndBound(rootNode);
 		
 		
@@ -90,7 +90,7 @@ public class NullPathBB {
 		while (!heap.empty() && heap.estimateBest() < pruneLimit) {
 			Node node = heap.extractBestNode();
 			ArrayList<Node> children = node.expand();
-			for (Node child : children)
+			for (Node child : children) {
 				if (child.isSolution()) {
 					int cost = child.getHeuristicValue();
 					if (cost < pruneLimit) {
@@ -104,6 +104,7 @@ public class NullPathBB {
 						heap.insert(child);
 						// update heuristic??
 					}
+			}
 		} //while
 		
 	}

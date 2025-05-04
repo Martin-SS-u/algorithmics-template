@@ -3,25 +3,31 @@ package algstudent.s7.utils;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import algstudent.s7.NullPathBB;
+
 /**
  * To represents the different states of a problem in the graph
  * For each problem, we should extend this class with specific information
  * We also need to compare Nodes because it is the way to compare them in the priority queue
  * @author viceg
  */
-public abstract class Node implements Comparable<Node> {
+public class Node implements Comparable<Node> {
     protected int depth; //Number of moves made so far (is equal to the number of nodes developed) on this branch
     protected UUID parentID; //Parent ID for node tracking
     protected UUID ID; //ID for the node
     protected int heuristicValue; //Value of the calculated heuristic
 
+    int i;
     /**
      * Constructor for Node objects
      */
-	public Node() { //Values by default
+	public Node(int i) { //Values by default
     	depth = 0; 
     	parentID = null; //It does not have parent unless we say another thing
     	ID = UUID.randomUUID();
+    	
+    	this.i = i;
+		calculateHeuristicValue();
 	}
 	
 	/**
@@ -81,7 +87,31 @@ public abstract class Node implements Comparable<Node> {
 		else return -1; //this has more priority (is smaller)
 	}
     
-	public abstract void calculateHeuristicValue();
-	public abstract ArrayList<Node> expand();
-	public abstract boolean isSolution();
+	public void calculateHeuristicValue() {
+		int aaa = Integer.MAX_VALUE;
+		for(int j=0; j < NullPathBB.weights.length; j++) {
+			if(Math.abs(NullPathBB.weights[i][j]) < aaa) {
+				aaa = NullPathBB.weights[i][j];
+			}
+		}
+		heuristicValue = aaa;
+	}
+
+	
+	public ArrayList<Node> expand() {
+		ArrayList<Node> children = new ArrayList<Node>();
+		for(int n : NullPathBB.nodes) {
+			if(i != n /*And not used*/) {
+				children.add(new Node(n));
+			}
+		}
+		return children;
+	}
+
+	
+	public boolean isSolution() {
+		// TODO Auto-generated method stub
+		
+		return true;
+	}
 }
