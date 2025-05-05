@@ -74,15 +74,6 @@ public class MinimumPathsExample {
 			for (int j = 0; j < costs.length; j++) {
 				costs[i][j] = weights[i][j];
 				p[i][j] = empty;
-//				if(weights[i][j] < infinite) {
-//					costs[i][j] = weights[i][j];
-//				}else {
-//					costs[i][j] = infinite;
-//				}				
-//				p[i][j] = empty;
-//				if(i == j) {
-//					p[i][j] = 0;
-//				}
 			}
 		}	
 	}
@@ -93,7 +84,7 @@ public class MinimumPathsExample {
 			System.out.println("THERE IS NO PATH");
 		}else {
 			System.out.print(v[source]);
-			path(v,steps,pivot,target);
+			path(v,steps,source,target);
 			System.out.println();
 		}		
 	}
@@ -103,9 +94,13 @@ public class MinimumPathsExample {
 		if(i == -1) {
 			System.out.print("-->" + v[j]);
 		}else {
-			System.out.print("-->" + v[i]);
+			//System.out.print("-->" + v[i]);
 			if(i != j) {
 				int newPivot = p[i][j];
+				if(newPivot != -1) {
+					path(v,steps,i,newPivot);
+					
+				}
 				path(v,steps,newPivot,j);
 			}
 		}

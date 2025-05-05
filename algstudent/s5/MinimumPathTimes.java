@@ -15,7 +15,7 @@ public class MinimumPathTimes {
 			// Start timer
 			t1 = System.currentTimeMillis();
 			
-			MinimumPaths.timedAlgorithm(n); // O(n^3)
+			MinimumPaths.basicAlgorithm(n);
 			
 			// End timer
 			t2 = System.currentTimeMillis();

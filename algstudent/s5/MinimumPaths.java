@@ -65,26 +65,26 @@ public class MinimumPaths {
 		
 	}
 	
-	public static void timedAlgorithm(int n) { // O(n^3)
+	public static void basicAlgorithm(int n) {
 		weights = new int[n][n];
 		costs = new int[n][n];
 		p = new int[n][n];
 		v = new String[n];
-		for (int i = 0; i < n; i++) // O(n)
+		for (int i = 0; i < n; i++)
 			v[i] = "NODE" + i;
 		
 		
 		//randomly generating weights
-		MinimumPaths.fillInWeightsRandom(weights); // O(n^2)
+		MinimumPaths.fillInWeightsRandom(weights);
 		
 		//computing floyd
-		MinimumPaths.floyd(weights, costs, p); // O(n^3)
+		MinimumPaths.floyd(weights, costs, p);
 		
 		//computing the shortest paths
-		for (int source = 0; source <= n-1; source++) //O(n^3)
+		for (int source = 0; source <= n-1; source++)
 			for (int target = 0; target <= n-1; target++)
 				if (source != target) {
-					MinimumPaths.minimumPath(v, weights, costs, p, source, target); // O(n)
+					minimumPath(v, weights, costs, p, source, target);
 				}
 
 	}
@@ -119,23 +119,28 @@ public class MinimumPaths {
 	static void minimumPath(String[] v, int[][] weights, int[][] costs, int[][] steps, int source, int target) {
 		int pivot = p[source][target];
 		if(costs[source][target] == infinite) {
-//			System.out.println("THERE IS NO PATH");
+			System.out.println("THERE IS NO PATH");
 		}else {
-//			System.out.print(v[source]);
+			System.out.print(v[source]);
 			path(v,steps,pivot,target);
-//			System.out.println();
+			System.out.println();
 		}		
 	}
 
 	/* IT IS RECURSIVE and WORST CASE is O(n), IT IS O(n) if you write all nodes */
 	static void path(String[] v, int[][] steps, int i, int j) {
 		if(i == -1) {
-//			System.out.print("-->" + v[j]);
+			System.out.print("-->" + v[j]);
 		}else {
-//			System.out.print("-->" + v[i]);
+			System.out.print("-->" + v[i]);
 			if(i != j) {
 				int newPivot = p[i][j];
-				path(v,steps,newPivot,j);
+				if(newPivot != -1) {
+					path(v,steps,i,newPivot);
+					path(v,steps,newPivot,j);
+				}
+				
+				
 			}
 		}		
 	}
