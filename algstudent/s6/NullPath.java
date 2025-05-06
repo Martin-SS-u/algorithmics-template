@@ -85,31 +85,27 @@ public class NullPath {
 					pathWeight += weights[current][child];
 					usedNodes.add(child);
 					backtracking(child, target);
-					if(!isSolution(usedNodes)) {
+					if(!found) {
 						pathWeight -= weights[current][child];
 						usedNodes.remove((Integer) child);
-					}else {
+					}/*else {
 						found = true;
 						return;
-					}
+					}*/
 				}else {
 					pathWeight += weights[current][target];
 					usedNodes.add(target);
-					if(!isSolution(usedNodes)) {
+					if(!found) {
 						pathWeight -= weights[current][target];
 						usedNodes.remove((Integer) target);
-					}else {
+					}/*else {
 						found = true;
 						return;
-					}
+					}*/
 				}
 			}
-			if(found) {
-				return;
-			}
 		}//for all the j children of state
-		if (isSolution(usedNodes)) {
-			found = true;
+		if (found) {
 			return;
 		}
 	}	
